@@ -15,6 +15,7 @@ class Server {
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use('/api/genres', require('../routes/genres'));
+        this.app.use('/api/movies', require('../routes/movies'));
         this.app.use(error);
     }
 
