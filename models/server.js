@@ -17,6 +17,7 @@ class Server {
         this.app.use('/api/genres', require('../routes/genres'));
         this.app.use('/api/movies', require('../routes/movies'));
         this.app.use('/api/users', require('../routes/users'));
+        this.app.use('/api/auth', require('../routes/auth'));
         this.app.use(error);
     }
 

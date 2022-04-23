@@ -5,7 +5,7 @@ const { User, validateUser } = require('../models/user');
 const { encrypter } = require('../utils/bcrypt');
 
 router.get('/me', auth, async (req, res) => {
-    const user = await User.findById(req.user._id).select('-password');
+    const user = await User.findById(req.user._id).select('-password -__v');
     res.send(user);
 });
 
