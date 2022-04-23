@@ -23,7 +23,11 @@ router.post('/', async (req, res) => {
     user.password = await encrypter(req.body.password);
     await user.save();
 
-    res.send(user);
+    const token = user.generateAuthToken();
+
+    res.header('x-token-auth', token)
+        .header('access-control-expose-headers', 'x-token-auth')
+        .send(user);
 });
 
 module.exports = router;
