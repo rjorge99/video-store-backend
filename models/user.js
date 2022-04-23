@@ -4,20 +4,20 @@ const Joi = require('joi');
 const userSchema = mongoose.Schema({
     username: {
         type: String,
-        min: 5,
-        max: 20,
+        minLength: 5,
+        maxLength: 20,
         required: true
     },
     password: {
         type: String,
-        min: 5,
-        max: 20,
+        minLength: 5,
+        maxLength: 20,
         required: true
     },
     email: {
         type: String,
-        min: 5,
-        max: 200,
+        minLength: 5,
+        maxLength: 200,
         required: true,
         unique: true
     }
