@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', [validateId], async (req, res) => {
-    const genre = await Genre.findById(req.params.id);
+    const genre = await Genre.findById(req.params.id).select('-__v');
 
     if (!genre) return res.status(404).send('Genre not found');
 
