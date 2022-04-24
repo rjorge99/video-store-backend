@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema({
     }
 });
 
-const validateUser = (user) => {
+function validateUser(user) {
     const schema = Joi.object({
         username: Joi.string().min(5).max(20).required(),
         password: Joi.string().min(5).max(1024).required(),
@@ -36,7 +36,7 @@ const validateUser = (user) => {
     });
 
     return schema.validate(user);
-};
+}
 
 userSchema.methods.generateAuthToken = function () {
     return jwt.sign(

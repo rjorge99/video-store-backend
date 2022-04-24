@@ -3,6 +3,7 @@ const { Router } = require('express');
 const admin = require('../middlewares/admin');
 const auth = require('../middlewares/auth');
 const router = Router();
+const validate = require('../middlewares/validate');
 const validateId = require('../middlewares/validateObjectId');
 
 router.get('/', async (req, res) => {
@@ -18,10 +19,7 @@ router.get('/:id', [validateId], async (req, res) => {
     res.send(genre);
 });
 
-router.post('/', auth, async (req, res) => {
-    const { error } = validateGenre(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-
+router.post('/', [auth, validate(validateGenre)], async (req, res) => {
     const genre = new Genre(req.body);
     await genre.save();
 

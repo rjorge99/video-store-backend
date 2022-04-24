@@ -14,10 +14,11 @@ class Server {
     middlewares() {
         this.app.use(cors());
         this.app.use(express.json());
+        this.app.use('/api/auth', require('../routes/auth'));
+        this.app.use('/api/customers', require('../routes/customers'));
         this.app.use('/api/genres', require('../routes/genres'));
         this.app.use('/api/movies', require('../routes/movies'));
         this.app.use('/api/users', require('../routes/users'));
-        this.app.use('/api/auth', require('../routes/auth'));
         this.app.use(error);
     }
 

@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { User, validateUser } = require('../models/user');
 const { encrypter } = require('../utils/bcrypt');
+const validate = require('../middlewares/validate');
 const auth = require('../middlewares/auth');
 const router = Router();
 
@@ -9,10 +10,7 @@ router.get('/me', auth, async (req, res) => {
     res.send(user);
 });
 
-router.post('/', async (req, res) => {
-    const { error } = validateUser(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-
+router.post('/', validate(validateUser), async (req, res) => {
     let user = await User.findOne({ email: req.body.email });
     if (user) return res.status(400).send('User already exists');
 
