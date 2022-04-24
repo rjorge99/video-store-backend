@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const { User } = require('../models/user');
-const router = Router();
-const Joi = require('joi');
 const { compare } = require('../utils/bcrypt');
+const Joi = require('joi');
+const router = Router();
 
 router.get('/', async (req, res) => {
     const { error } = validateAuth(req.body);

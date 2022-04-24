@@ -1,9 +1,9 @@
 const { Genre, validateGenre } = require('../models/genre');
-const auth = require('../middlewares/auth');
-const admin = require('../middlewares/admin');
-const validateId = require('../middlewares/validateObjectId');
 const { Router } = require('express');
+const admin = require('../middlewares/admin');
+const auth = require('../middlewares/auth');
 const router = Router();
+const validateId = require('../middlewares/validateObjectId');
 
 router.get('/', async (req, res) => {
     const genres = await Genre.find().select('-__v').sort('name');

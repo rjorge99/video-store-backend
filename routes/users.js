@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const auth = require('../middlewares/auth');
-const router = Router();
 const { User, validateUser } = require('../models/user');
 const { encrypter } = require('../utils/bcrypt');
+const auth = require('../middlewares/auth');
+const router = Router();
 
 router.get('/me', auth, async (req, res) => {
     const user = await User.findById(req.user._id).select('-password -__v');

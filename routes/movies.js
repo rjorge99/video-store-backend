@@ -1,10 +1,10 @@
-const { Router } = require('express');
-const auth = require('../middlewares/auth');
-const admin = require('../middlewares/admin');
-const validateId = require('../middlewares/validateObjectId');
-const router = Router();
-const { Movie, validateMovie } = require('../models/movie');
 const { Genre } = require('../models/genre');
+const { Movie, validateMovie } = require('../models/movie');
+const { Router } = require('express');
+const admin = require('../middlewares/admin');
+const auth = require('../middlewares/auth');
+const router = Router();
+const validateId = require('../middlewares/validateObjectId');
 
 router.get('/', async (req, res) => {
     const movies = await Movie.find().select('-__v').sort('title');
