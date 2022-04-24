@@ -1,6 +1,6 @@
+const { compare } = require('../utils/bcrypt');
 const { Router } = require('express');
 const { User } = require('../models/user');
-const { compare } = require('../utils/bcrypt');
 const validate = require('../middlewares/validate');
 const Joi = require('joi');
 const router = Router();

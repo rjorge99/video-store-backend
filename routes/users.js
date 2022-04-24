@@ -1,8 +1,8 @@
+const { encrypter } = require('../utils/bcrypt');
 const { Router } = require('express');
 const { User, validateUser } = require('../models/user');
-const { encrypter } = require('../utils/bcrypt');
-const validate = require('../middlewares/validate');
 const auth = require('../middlewares/auth');
+const validate = require('../middlewares/validate');
 const router = Router();
 
 router.get('/me', auth, async (req, res) => {

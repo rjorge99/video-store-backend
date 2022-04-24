@@ -2,10 +2,10 @@ const { Genre } = require('../models/genre');
 const { Movie, validateMovie } = require('../models/movie');
 const { Router } = require('express');
 const admin = require('../middlewares/admin');
-const validate = require('../middlewares/validate');
 const auth = require('../middlewares/auth');
-const router = Router();
+const validate = require('../middlewares/validate');
 const validateId = require('../middlewares/validateObjectId');
+const router = Router();
 
 router.get('/', async (req, res) => {
     const movies = await Movie.find().select('-__v').sort('title');

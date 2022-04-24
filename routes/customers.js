@@ -1,9 +1,9 @@
-const { Router } = require('express');
 const { Customer, validateCustomer } = require('../models/customer');
-const validateId = require('../middlewares/validateObjectId');
-const validate = require('../middlewares/validate');
-const auth = require('../middlewares/auth');
+const { Router } = require('express');
 const admin = require('../middlewares/admin');
+const auth = require('../middlewares/auth');
+const validate = require('../middlewares/validate');
+const validateId = require('../middlewares/validateObjectId');
 const router = Router();
 
 router.get('/', async (req, res) => {
