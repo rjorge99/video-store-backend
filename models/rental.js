@@ -34,16 +34,6 @@ const rentalSchema = mongoose.Schema({
                 maxLength: 200,
                 trim: true
             },
-            genre: {
-                type: genreSchema,
-                required: true
-            },
-            numberInStock: {
-                type: Number,
-                required: true,
-                min: 0,
-                max: 255
-            },
             dailyRentalRate: {
                 type: Number,
                 required: true,
