@@ -5,7 +5,7 @@ const validate = require('../middlewares/validate');
 const Joi = require('joi');
 const router = Router();
 
-router.get('/', validate(validateAuth), async (req, res) => {
+router.post('/', validate(validateAuth), async (req, res) => {
     const user = await User.findOne({ username: req.body.username });
     if (!user) return res.status(400).send('Invalid username or password');
 
