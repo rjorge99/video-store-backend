@@ -23,7 +23,7 @@ router.post('/', validate(validateUser), async (req, res) => {
 
     const token = user.generateAuthToken();
 
-    res.header('x-token-auth', token).header('access-control-expose-headers', 'x-token-auth').send({
+    res.header('x-auth-token', token).header('access-control-expose-headers', 'x-token-auth').send({
         username: user.username,
         email: user.email,
         _id: user._id
