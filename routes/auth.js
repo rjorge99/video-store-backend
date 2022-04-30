@@ -9,7 +9,7 @@ router.post('/', validate(validateAuth), async (req, res) => {
     const user = await User.findOne({ username: req.body.username });
     if (!user) return res.status(400).send('Invalid username or password');
 
-    const isPasswordValid = compare(user.password, req.body.password);
+    const isPasswordValid = await compare(user.password, req.body.password);
     if (!isPasswordValid) return res.status(400).send('Invalid username or password');
 
     const token = user.generateAuthToken();
