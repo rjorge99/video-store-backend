@@ -1,6 +1,7 @@
 const { compare } = require('../utils/bcrypt');
 const { Router } = require('express');
 const { User } = require('../models/user');
+const auth = require('../middlewares/auth');
 const validate = require('../middlewares/validate');
 const Joi = require('joi');
 const router = Router();
@@ -14,6 +15,10 @@ router.post('/', validate(validateAuth), async (req, res) => {
 
     const token = user.generateAuthToken();
     res.send(token);
+});
+
+router.post('/validateToken', auth, async (req, res) => {
+    res.send(req.user);
 });
 
 function validateAuth(data) {
