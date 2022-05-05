@@ -40,6 +40,24 @@ router.post('/', [auth, validate(validateMovie)], async (req, res) => {
     res.send(movie);
 });
 
+router.put('/:id', [auth, validate(validateMovie)], async (req, res) => {
+    const { title, numberInStock, dailyRentalRate, genreId } = req.body;
+
+    const genre = await Genre.findById(genreId);
+    if (!genre) return res.status(404).send('Genre not found');
+
+    const movie = await Movie.findByIdAndUpdate(req.params.id, {
+        title: title,
+        genre: {
+            _id: genre._id,
+            name: genre.name
+        },
+        numberInStock: numberInStock,
+        dailyRentalRate: dailyRentalRate
+    });
+    res.send(movie);
+});
+
 router.delete('/:id', [auth, admin, validateId], async (req, res) => {
     const movie = await Movie.findByIdAndDelete(req.params.id);
 
